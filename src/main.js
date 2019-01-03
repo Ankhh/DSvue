@@ -2,17 +2,22 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import ElementUI from 'element-ui'
+import moment from 'moment'
 import 'element-ui/lib/theme-chalk/index.css'
-// import '@/assets/index.css'
-// import Http from './plugins/http'
+import '@/assets/index.css'
+import Http from './plugins/http'
 
 import App from './App'
 import router from './router'
 
+Vue.use(Http)
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
+Vue.filter('fmtDate', (v) => {
+  return moment(v).format('YYYY-MM-DD')
+})
+
 new Vue({
   el: '#app',
   router,
